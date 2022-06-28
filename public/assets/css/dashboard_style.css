@@ -1,0 +1,54 @@
+:root {
+  /* font */
+  --font-primary: "Noto Sans", sans-serif;
+  /* end font */
+
+  /* color */
+  --color-primary: #0533c7;
+  /* end color */
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.bg-color-primary {
+  background-color: var(--color-primary);
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.nav-item {
+  color: white;
+  padding: 0 5px 30px 0;
+}
+
+.nav-link {
+  color: white;
+  font-family: var(--font-primary);
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 5px;
+}
+
+body{
+  background-image: url('../img/bg.jpg');
+  background-size: 100%;
+  background-position: center;
+}
+
+.card{
+  background-color: rgba(255, 255, 255, 0.822);
+}
+
+@media screen and (max-width: 992px) {
+  .gambar-login{
+    display: none;
+  }
+}
