@@ -13,7 +13,7 @@ class Auth extends Controller
         $this->view('templates/landing-page/footer');
     }
 
-    // login
+    // login proses
     public function credentials()
     {
         $cek = $this->model('Auth_model')->validasi($_POST['username']);

@@ -4,15 +4,19 @@ class User extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data User',
-            'user' => $this->model('User_model')->getAll(),
-            'member' => $this->model('Group_model')->getAll()
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data User',
+                'user' => $this->model('User_model')->getAll(),
+                'member' => $this->model('Group_model')->getAll()
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('user/index', $data);
-        $this->view('templates/dashboard/footer');
+            $this->view('templates/dashboard/header', $data);
+            $this->view('user/index', $data);
+            $this->view('templates/dashboard/footer');
+        }
     }
 
     public function store()

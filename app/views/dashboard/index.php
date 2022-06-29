@@ -1,21 +1,3 @@
-<div class="card card-body">
-    <div class="row">
-        <div class="col-md-6 text-start">
-            <h3 class="font-primary">Main Menu</h3>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Button trigger modal -->
-        <div class="col-md-6 text-end">
-            <h3 class="font-primary"><?= $data['title']; ?></h3>
-            <a href="<?= BASEURL; ?>/auth/logout" class="text-decoration-none"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout </a>
-        </div>
-
-    </div>
-</div>
-
 <div class="row align-items-center">
     <div class="col-md mt-3">
         <?php Flasher::flash(); ?>

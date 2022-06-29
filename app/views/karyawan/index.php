@@ -1,89 +1,43 @@
-<div class="card card-body">
-    <div class="row">
-        <div class="col-md-6 text-start">
-            <h3 class="font-primary">Main Menu</h3>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Button trigger modal -->
-        <div class="col-md-6 text-end">
-            <h3 class="font-primary"><?= $data['title']; ?></h3>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-                <i class="fa-solid fa-plus"></i> Karyawan
-            </button>
-        </div>
-    </div>
-</div>
-
-<div class="row align-items-center">
-    <div class="col-md mt-3">
-        <?php Flasher::flash(); ?>
-    </div>
-</div>
-
 <div class="card card-body font-primary table-responsive">
-    <div class="row mb-3">
-        <div class="col-md text-end">
-            <?php if ($_SESSION['user']['gender'] == 'L') : ?>
-                <img src="<?= BASEURL; ?>/assets/vector/user-man.png" alt="" style="width: 60px;">
-                <button class="badge bg-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-                    <?= $_SESSION['user']['nama_user']; ?> <i class="ms-3 fa-solid fa-angle-down"></i>
-                </button>
-                <div class="collapse" id="collapseExample3">
-                    <a href="" class="mb-1 text-dark text-decoration-none">Ganti Password <i class="fa-solid fa-unlock-keyhole"></i> </a> <br>
-                    <a href="<?= BASEURL; ?>/auth/logout" class="mb-1 text-dark text-decoration-none">Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                </div>
-            <?php else : ?>
-                <img src="<?= BASEURL; ?>/assets/vector/user-woman.png" alt="" style="width: 60px;">
-                <button class="badge bg-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-                    <?= $_SESSION['user']['nama_user']; ?> <i class="ms-3 fa-solid fa-angle-down"></i>
-                </button>
-                <div class="collapse" id="collapseExample3">
-                    <a href="" class="mb-1 text-dark text-decoration-none">Ganti Password <i class="fa-solid fa-key"></i> </a> <br>
-                    <a href="<?= BASEURL; ?>/auth/logout" class="mb-1 text-dark text-decoration-none">Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-    <table class="table table-hover display" id="table_id">
-        <thead>
-            <tr class="text-center">
-                <th>No.</th>
-                <th>NRP</th>
-                <th>Nama</th>
-                <th>Tempat, tgl lahir</th>
-                <th>Jenis Kelamin</th>
-                <th>Pendidikan</th>
-                <th>Jurusan</th>
-                <th>Alamat</th>
-                <th>Opsi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data['karyawan'] as $karyawan) : ?>
+    <div class="card-body table-responsive">
+        <table id="example1" class="table table-bordered table-hover">
+            <thead>
                 <tr class="text-center">
-                    <td><?= $i++; ?></td>
-                    <td><?= $karyawan['nrp']; ?></td>
-                    <td><?= $karyawan['nama']; ?></td>
-                    <td><?= $karyawan['tempat_lahir']; ?>, <?= date('d-M-y', strtotime($karyawan['tgl_lahir'])); ?></td>
-                    <td><?php if ($karyawan['jenkel'] == 'L') {
-                            echo 'Laki-laki';
-                        } else echo 'Perempuan'; ?></td>
-                    <td><?= $karyawan['nama_pendidikan']; ?></td>
-                    <td><?= $karyawan['nama_jurusan']; ?></td>
-                    <td><?= $karyawan['alamat']; ?></td>
-                    <td class="text-center">
-                        <button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#show<?= $karyawan['id']; ?>"><i class="fa-solid fa-eye"></i></button>
-                        <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#edit<?= $karyawan['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#confirmDelete<?= $karyawan['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
+                    <th>No.</th>
+                    <th>NRP</th>
+                    <th>Nama</th>
+                    <th>Tempat, tgl lahir</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Pendidikan</th>
+                    <th>Jurusan</th>
+                    <th>Alamat</th>
+                    <th>Opsi</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($data['karyawan'] as $karyawan) : ?>
+                    <tr class="text-center">
+                        <td><?= $i++; ?></td>
+                        <td><?= $karyawan['nrp']; ?></td>
+                        <td><?= $karyawan['nama']; ?></td>
+                        <td><?= $karyawan['tempat_lahir']; ?>, <?= date('d-M-y', strtotime($karyawan['tgl_lahir'])); ?></td>
+                        <td><?php if ($karyawan['jenkel'] == 'L') {
+                                echo 'Laki-laki';
+                            } else echo 'Perempuan'; ?></td>
+                        <td><?= $karyawan['nama_pendidikan']; ?></td>
+                        <td><?= $karyawan['nama_jurusan']; ?></td>
+                        <td><?= $karyawan['alamat']; ?></td>
+                        <td class="text-center">
+                            <button class="btn btn-success mb-2" data-toggle="modal" data-target="#show<?= $karyawan['id']; ?>"><i class="fa-solid fa-eye"></i></button>
+                            <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#edit<?= $karyawan['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
+                            <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $karyawan['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -92,7 +46,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/karyawan/store" method="POST">
@@ -224,7 +178,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -239,7 +193,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Karyawan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="<?= BASEURL; ?>/karyawan/update" method="POST">
@@ -386,7 +342,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -402,7 +358,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Detail Karyawan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -510,7 +468,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -525,7 +483,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -534,7 +494,7 @@
                             <h3 class="font-primary mt-5">Yakin hapus data <b><?= $karyawan['nama']; ?></b>?</h3>
                             <p class="text-muted font-primary">Data ini akan dihapus secara permanen !</p>
                             <a class="btn btn-danger mt-4" href="<?= BASEURL; ?>/karyawan/delete/<?= $karyawan['id']; ?>" style="width: 100px;">Yes</a>
-                            <button type="button" class="btn btn-success mt-4" data-bs-dismiss="modal" style="width: 100px;">No</button>
+                            <button type="button" class="btn btn-success mt-4" data-dismiss="modal" style="width: 100px;">No</button>
                         </div>
                     </div>
                 </div>

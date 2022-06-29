@@ -14,13 +14,13 @@
                                 <div class="row">
                                     <div class="col-md mb-3">
                                         <label for="username" class="form-label color-primary"><i class="fa-solid fa-user-lock"></i> Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" autofocus>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required autofocus>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md mb-3">
                                         <label for="password" class="form-label color-primary"><i class="fa-solid fa-lock"></i> Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Entry your password">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Entry your password" required>
                                     </div>
                                 </div>
                                 <div class="row">
