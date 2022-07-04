@@ -1,70 +1,54 @@
-<div class="card card-body">
-    <div class="row">
-        <div class="col-md-6 text-start">
-            <h3 class="font-primary">Main Menu</h3>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Button trigger modal -->
-        <div class="col-md-6 text-end">
-            <h3 class="font-primary"><?= $data['title']; ?></h3>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
-                <i class="fa-solid fa-plus"></i> User
-            </button>
-        </div>
-
+<div class="row" style="margin-top: -10px;">
+    <div class="col-md mb-3">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#create"><i class="fas fa-plus"></i> Baru</button>
     </div>
 </div>
 
-<div class="row align-items-center">
-    <div class="col-md mt-3" data-aos="fade-down" data-aos-duration="1500">
-        <?php Flasher::flash(); ?>
-    </div>
-</div>
-
-<div class="card card-body font-primary table-responsive">
-    <table class="table table-hover display" id="table_id">
-        <thead>
-            <tr class="text-center">
-                <th>No.</th>
-                <th>Nama Karyawan</th>
-                <th>Username</th>
-                <th>Opsi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($data['user'] as $user) : ?>
+<div class="card font-primary table-responsive">
+    <div class="card-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
                 <tr class="text-center">
-                    <td><?= $i++; ?></td>
-                    <td><?= $user['nama']; ?></td>
-                    <td><?= $user['username']; ?></td>
-                    <td class="text-center">
-                        <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#edit<?= $user['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#confirmDelete<?= $user['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
-                    </td>
+                    <th>No.</th>
+                    <th>Nama Karyawan</th>
+                    <th>Username</th>
+                    <th>Opsi</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($data['user'] as $user) : ?>
+                    <tr class="text-center">
+                        <td><?= $i++; ?></td>
+                        <td><?= $user['nama']; ?></td>
+                        <td><?= $user['username']; ?></td>
+                        <td class="text-center">
+                            <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#edit<?= $user['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
+                            <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $user['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="create" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/user/store" method="POST">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="karyawan_id" class="form-label">Nama Karyawan</label>
-                            <select name="karyawan_id" id="karyawan_id" id="karyawan_id" class="form-select">
+                            <select name="karyawan_id" class="custom-select select2" style="width: 100%;">
                                 <option value="" disabled selected>Pilih Karyawan</option>
                                 <?php foreach ($data['member'] as $k) : ?>
                                     <option value="<?= $k['id_member']; ?>"><?= $k['member']; ?></option>
@@ -88,7 +72,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -98,12 +82,14 @@
 
 <?php foreach ($data['user'] as $user) : ?>
     <!-- Modal -->
-    <div class="modal fade" id="edit<?= $user['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit<?= $user['id']; ?>" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="<?= BASEURL; ?>/user/update" method="POST">
@@ -114,7 +100,7 @@
                         <div class="row">
                             <div class="col-md mb-3">
                                 <label for="karyawan_id" class="form-label">Nama Karyawan</label>
-                                <select name="karyawan_id" id="karyawan_id" class="form-select">
+                                <select name="karyawan_id" class="custom-select select2" style="width: 100%;">
                                     <option value="<?= $user['karyawan_id']; ?>">Existing : <?= $user['nama']; ?></option>
                                     <?php foreach ($data['karyawan'] as $k) : ?>
                                         <option value="<?= $k['id']; ?>"><?= $k['nama']; ?></option>
@@ -130,7 +116,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>
@@ -146,7 +132,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -155,7 +143,7 @@
                             <h3 class="font-primary mt-5">Yakin hapus data <b><?= $user['nama']; ?></b>?</h3>
                             <p class="text-muted font-primary">Data ini akan dihapus secara permanen !</p>
                             <a class="btn btn-danger mt-4" href="<?= BASEURL; ?>/user/delete/<?= $user['id']; ?>" style="width: 100px;">Yes</a>
-                            <button type="button" class="btn btn-success mt-4" data-bs-dismiss="modal" style="width: 100px;">No</button>
+                            <button type="button" class="btn btn-success mt-4" data-dismiss="modal" style="width: 100px;">No</button>
                         </div>
                     </div>
                 </div>

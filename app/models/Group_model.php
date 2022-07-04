@@ -39,7 +39,7 @@ class Group_model
         return $this->db->resultSet();
     }
 
-    public function validasi($data)
+    public function duplicateValidation($data)
     {
         $this->db->query("SELECT * FROM `group` INNER JOIN karyawan ON group.karyawan_id = karyawan.id WHERE karyawan_id = :data");
         $this->db->bind('data', $data);
@@ -95,5 +95,12 @@ class Group_model
         $this->db->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function checkRelation($data)
+    {
+        $this->db->query("SELECT * FROM `group` INNER JOIN karyawan ON group.atasan_1 = karyawan.id WHERE atasan_1 = :data");
+        $this->db->bind('data', $data);
+        return $this->db->single();
     }
 }

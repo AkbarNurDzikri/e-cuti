@@ -10,7 +10,8 @@ class User extends Controller
             $data = [
                 'title' => 'Data User',
                 'user' => $this->model('User_model')->getAll(),
-                'member' => $this->model('Group_model')->getAll()
+                'member' => $this->model('Group_model')->getAll(),
+                'karyawan' => $this->model('Karyawan_model')->getAll()
             ];
 
             $this->view('templates/dashboard/header', $data);
@@ -23,18 +24,18 @@ class User extends Controller
     {
         $cek = $this->model('User_model')->validasi($_POST['karyawan_id']);
         if ($cek > 0) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Maaf, karyawan sudah terdaftar !');
+            Flasher::setFlash('danger', 'Maaf, karyawan sudah terdaftar ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         } elseif ($_POST['password'] !== $_POST['konfirmPassword']) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Konfirmasi password tidak sesuai !');
+            Flasher::setFlash('danger', 'Konfirmasi password tidak sesuai. Perhatikan huruf besar kecil ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/user');
         } elseif ($this->model('User_model')->store($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil ditambahkan');
+            Flasher::setFlash('success', 'Berhasil menambahkan user baru ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal ditambahkan');
+            Flasher::setFlash('warning', 'Data gagal ditambahkan ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         }
@@ -43,11 +44,11 @@ class User extends Controller
     public function update()
     {
         if ($this->model('User_model')->update($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil diupdate');
+            Flasher::setFlash('success', 'Berhasil mengupdate data', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal diupdate');
+            Flasher::setFlash('warning', 'Gagal mengupdate data', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         }
@@ -56,11 +57,11 @@ class User extends Controller
     public function delete($id)
     {
         if ($this->model('User_model')->destroy($id) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil dihapus');
+            Flasher::setFlash('success', 'Berhasil menghapus data', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal dihapus');
+            Flasher::setFlash('warning', 'Gagal menghapus data', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/user');
             exit;
         }

@@ -68,13 +68,21 @@
   });
 </script>
 
+<!-- Auto close alert bootstrap 4 -->
+<script>
+  window.setTimeout(function() {
+    $('.alert').fadeTo(500, 0).slideUp(500, function() {
+      $(this).remove();
+    });
+  }, 5000);
+</script>
+
 
 <div class="modal fade" id="userSettingModal" aria-labelledby="userSettingModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="user
-            SettingModalLabel">User Setting</h5>
+        <h5 class="modal-title" id="userSettingModalLabel">User Setting</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -82,14 +90,12 @@
           <div class="modal-body">
             <div class="row text-center">
               <div class="col-sm mb-2">
-                <form action="<?= BASEURL; ?>/logout" method="POST">
-                  
-                  <button style="submit" class="btn btn-primary mb-2"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                </form>
+                <a href="<?= BASEURL; ?>/auth/logout" class="btn btn-primary mb-2"><i class="fas fa-sign-out-alt"></i> Logout</a> </br>
                 
                 <a href="" class="btn btn-dark"><i class="fas fa-cog"></i> Pengaturan</a>
-                </div>
+                <p class="small-text"><h6><?= $_SESSION['user']['nama_user'] . ' | ' . $_SESSION['user']['nama_jabatan'] ?></h6></p>
               </div>
+            </div>
           </div>
         </div>
       </div>

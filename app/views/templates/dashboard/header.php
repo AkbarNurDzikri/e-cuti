@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" href="{{ asset('vendor/AdminLTE-master/dist/img/masjid-logo.png') }}"> -->
-  <title>Title</title>
+  <!-- My CSS -->
+  <!-- <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/dashboard_style.css"> -->
+  <link rel="icon" href="<?= BASEURL; ?>/assets/img/navbar-brand.png">
+  <title>E-Cuti BFI</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= BASEURL; ?>/vendor/fontawesome-free-6.1.1/css/all.css">
   <!-- Font Awesome Template Admin -->
@@ -25,7 +27,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="" alt="AdminLTELogo" height="200" width="200">
+    <img class="animation__shake" src="<?= BASEURL; ?>/assets/img/navbar-brand.png" alt="Blasfolie Logo" height="150" width="150">
   </div>
 
   <!-- Navbar -->
@@ -251,12 +253,7 @@
         <hr>
 
           <?php if(isset($_SESSION['flash'])) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
               <?php Flasher::flash(); ?>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
           <?php endif;?>
       </div><!-- /.container-fluid -->
     </div>
@@ -264,7 +261,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid" style="margin-top: -20px;">
+      <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
 
         <!-- Main row -->

@@ -1,17 +1,18 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <a class="nav-link active" href="<?= BASEURL; ?>/transcuti" role="tab" aria-controls="CutiSaya" aria-selected="true">Cuti Saya</a>
+    <a class="nav-link" href="<?= BASEURL; ?>/transcuti" role="tab" aria-controls="CutiSaya" aria-selected="true">Cuti Saya</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" href="<?= BASEURL; ?>/transcuti/cutiKaryawan" role="tab" aria-controls="CutiKaryawan" aria-selected="false">Cuti Karyawan</a>
+    <a class="nav-link active" href="<?= BASEURL; ?>/transcuti/cutiKaryawan" role="tab" aria-controls="CutiKaryawan" aria-selected="false">Cuti Karyawan</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="CutiSaya" role="tabpanel" aria-labelledby="CutiSaya-tab">
+  <div class="tab-pane fade show active" id="CutiKaryawan" role="tabpanel" aria-labelledby="CutiKaryawan-tab">
     <div class="card font-primary table-responsive">
         <div class="card-body table-responsive">
             <div class="row">
                 <div class="col-md mb-2">
+                    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#create<?= $_SESSION['user']['id_user'] ?>"><i class="fas fa-plus"></i> Baru</button> -->
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
                         <i class="fas fa-feather-alt"></i> Buat Cuti
                     </button>
@@ -630,11 +631,11 @@
 
 <?php foreach ($data['transcuti'] as $transcuti) : ?>
     <!-- Modal -->
-    <div class="modal fade" id="confirmDelete<?= $transcuti['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmDelete<?= $transcuti['id']; ?>" tabindex="-1" aria-labelledby="konfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi</h5>
+                    <h5 class="modal-title" id="konfirmModalLabel">Konfirmasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -657,14 +658,12 @@
 
 <?php foreach ($data['transcuti'] as $c) : ?>
     <!-- Modal -->
-    <div class="modal fade" id="buktiCuti<?= $c['id'] ?>" tabindex="-1" aria-labelledby="buktiCutiModalLabel" aria-hidden="true">
+    <div class="modal fade" id="buktiCuti<?= $c['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="buktiCutiModalLabel">Berkas Cuti <?= $c['karyawan'] ?></h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Berkas Cuti <?= $c['karyawan'] ?></h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card card-body">

@@ -1,6 +1,11 @@
-<div class="card card-body font-primary table-responsive">
+<div class="row" style="margin-top: -10px;">
+    <div class="col-md mb-3">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#create"><i class="fas fa-plus"></i> Baru</button>
+    </div>
+</div>
+<div class="card font-primary table-responsive">
     <div class="card-body table-responsive">
-        <table id="example1" class="table table-bordered table-hover">
+        <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr class="text-center">
                     <th>No.</th>
@@ -41,12 +46,14 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="create" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="createModalLabel">Tambah Karyawan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/karyawan/store" method="POST">
@@ -77,7 +84,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="jenkel" class="form-label">Jenis Kelamin</label>
-                            <select name="jenkel" id="jenkel" class="form-select" required>
+                            <select name="jenkel" id="jenkel" class="custom-select" required>
                                 <option value="" disabled selected>Pilih Jenis Kelamin</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
@@ -87,7 +94,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="pendidikan_id" class="form-label">Pendidikan</label>
-                            <select name="pendidikan_id" id="pendidikan_id" class="form-select" required>
+                            <select name="pendidikan_id" id="pendidikan_id" class="custom-select" required>
                                 <option value="" disabled selected>Pilih Pendidikan</option>
                                 <?php foreach ($data['pendidikan'] as $pendidikan) : ?>
                                     <option value="<?= $pendidikan['id']; ?>"><?= $pendidikan['nama_pendidikan']; ?></option>
@@ -96,7 +103,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="jurusan_id" class="form-label">Jurusan</label>
-                            <select name="jurusan_id" id="jurusan_id" class="form-select" required>
+                            <select name="jurusan_id" id="jurusan_id" class="custom-select" required>
                                 <option value="" disabled selected>Pilih Jurusan</option>
                                 <?php foreach ($data['jurusan'] as $jurusan) : ?>
                                     <option value="<?= $jurusan['id']; ?>"><?= $jurusan['nama_jurusan']; ?></option>
@@ -107,7 +114,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="agama" class="form-label">Agama</label>
-                            <select name="agama" id="agama" class="form-select" required>
+                            <select name="agama" id="agama" class="custom-select" required>
                                 <option value="" disabled selected>Pilih Agama</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Katolik">Katolik</option>
@@ -125,7 +132,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="status_perkawinan" class="form-label">Status Perkawinan</label>
-                            <select name="status_perkawinan" id="status_perkawinan" class="form-select" required>
+                            <select name="status_perkawinan" id="status_perkawinan" class="custom-select" required>
                                 <option value="" disabled selected>Pilih Status</option>
                                 <option value="1">Menikah</option>
                                 <option value="0">Belum Menikah</option>
@@ -228,7 +235,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="jenkel" class="form-label">Jenis Kelamin</label>
-                                <select name="jenkel" id="jenkel" class="form-select">
+                                <select name="jenkel" id="jenkel" class="custom-select">
                                     <option value="<?= $karyawan['jenkel']; ?>" selected>
                                         <?php if ($karyawan['jenkel'] == 'L') {
                                             echo 'Exist : Laki-laki';
@@ -243,7 +250,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="pendidikan_id" class="form-label">Pendidikan</label>
-                                <select name="pendidikan_id" id="pendidikan_id" class="form-select" required>
+                                <select name="pendidikan_id" id="pendidikan_id" class="custom-select" required>
                                     <option value="<?= $karyawan['pendidikan_id']; ?>" selected>Exist : <?= $karyawan['nama_pendidikan']; ?></option>
                                     <option value="" disabled>Pilih Pendidikan</option>
                                     <?php foreach ($data['pendidikan'] as $pendidikan) : ?>
@@ -253,7 +260,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="jurusan_id" class="form-label">Jurusan</label>
-                                <select name="jurusan_id" id="jurusan_id" class="form-select" required>
+                                <select name="jurusan_id" id="jurusan_id" class="custom-select" required>
                                     <option value="<?= $karyawan['jurusan_id']; ?>">Exist : <?= $karyawan['nama_jurusan']; ?></option>
                                     <option value="" disabled>Pilih Jurusan</option>
                                     <?php foreach ($data['jurusan'] as $jurusan) : ?>
@@ -265,7 +272,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="agama" class="form-label">Agama</label>
-                                <select name="agama" id="agama" class="form-select">
+                                <select name="agama" id="agama" class="custom-select">
                                     <option value="<?= $karyawan['agama']; ?>" selected>Exist : <?= $karyawan['agama']; ?></option>
                                     <option value="" disabled>Pilih Agama</option>
                                     <option value="Islam">Islam</option>
@@ -284,7 +291,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="status_perkawinan" class="form-label">Status Perkawinan</label>
-                                <select name="status_perkawinan" id="status_perkawinan" class="form-select">
+                                <select name="status_perkawinan" id="status_perkawinan" class="custom-select">
                                     <option value="<?= $karyawan['status_perkawinan'] ?>">
                                         <?php if ($karyawan['status_perkawinan'] == 0) {
                                             echo 'Belum Menikah';

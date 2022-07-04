@@ -35,34 +35,34 @@ class Transcuti extends Controller
         ];
 
         $this->view('templates/dashboard/header', $data);
-        $this->view('transcuti/index', $data);
+        $this->view('transcuti/cutiKaryawan', $data);
         $this->view('templates/dashboard/footer');
     }
 
     public function store()
     {
         if ($_POST['cuti_out'] == 'Invalid Date !') {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Tanggal yang Anda pilih tidak valid !');
+            Flasher::setFlash('warning', 'Tanggal yang Anda pilih tidak valid !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == null or $_POST['cuti_out'] == 0) {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Cuti Diambil tidak terdeteksi ! Ulangi permohonan cuti Anda');
+            Flasher::setFlash('warning', 'Cuti Diambil tidak terdeteksi ! Ulangi permohonan cuti Anda', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == 'Saldo kurang !') {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Saldo cuti Anda tidak cukup ! Hubungi HRD jika perlu');
+            Flasher::setFlash('warning', 'Saldo cuti Anda tidak cukup ! Hubungi HRD jika perlu', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == 'NaN') {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Terjadi kesalahan. Silahkan ulangi permohonan cuti Anda !');
+            Flasher::setFlash('warning', 'Terjadi kesalahan. Silahkan ulangi permohonan cuti Anda !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($this->model('Transcuti_model')->store($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Berhasil membuat permohonan cuti');
+            Flasher::setFlash('success', 'Berhasil membuat permohonan cuti', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Gagal membuat permohonan cuti !');
+            Flasher::setFlash('warning', 'Gagal membuat permohonan cuti !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         }
