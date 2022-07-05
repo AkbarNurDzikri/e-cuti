@@ -437,14 +437,13 @@
 
                             <div class="row">
                                 <div class="col-md mb-3">
-                                    <!-- <label for="bukti_cuti" class="form-label">Berkas Cuti</label>
-                                    <input type="file" class="form-control" name="bukti_cuti" id="bukti_cuti"> -->
+                                    <label for="bukti_cuti" class="form-label">Berkas Cuti Khusus</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="bukti_cuti" name="bukti_cuti" aria-describedby="inputGroupFileAddon01">
+                                            <input type="file" class="custom-file-input" id="bukti_cuti" name="bukti_cuti" aria-describedby="inputGroupFileAddon01" required>
                                             <label class="custom-file-label" for="bukti_cuti">Format Only : Jpg / Png</label>
                                         </div>
                                     </div>
