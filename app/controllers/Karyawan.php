@@ -8,12 +8,13 @@ class Karyawan extends Controller
             'title' => 'Data Karyawan',
             'karyawan' => $this->model('Karyawan_model')->getAll(),
             'pendidikan' => $this->model('Pendidikan_model')->getAll(),
-            'jurusan' => $this->model('Jurusan_model')->getAll()
+            'jurusan' => $this->model('Jurusan_model')->getAll(),
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('karyawan/index', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function store()

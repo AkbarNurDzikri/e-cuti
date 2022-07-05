@@ -11,12 +11,13 @@ class User extends Controller
                 'title' => 'Data User',
                 'user' => $this->model('User_model')->getAll(),
                 'member' => $this->model('Group_model')->getAll(),
-                'karyawan' => $this->model('Karyawan_model')->getAll()
+                'karyawan' => $this->model('Karyawan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll()
             ];
 
             $this->view('templates/dashboard/header', $data);
             $this->view('user/index', $data);
-            $this->view('templates/dashboard/footer');
+            $this->view('templates/dashboard/footer', $data);
         }
     }
 

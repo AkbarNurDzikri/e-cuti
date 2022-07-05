@@ -6,12 +6,13 @@ class Cuti extends Controller
     {
         $data = [
             'title' => 'Data Jenis Cuti',
-            'cuti' => $this->model('Cuti_model')->getAll()
+            'cuti' => $this->model('Cuti_model')->getAll(),
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('cuti/index', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function store()

@@ -6,12 +6,13 @@ class Dept extends Controller
     {
         $data = [
             'title' => 'Data Departemen',
-            'dept' => $this->model('Dept_model')->getAll()
+            'dept' => $this->model('Dept_model')->getAll(),
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('dept/index', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function store()

@@ -6,12 +6,13 @@ class Jurusan extends Controller
     {
         $data = [
             'title' => 'Data Jurusan',
-            'jurusan' => $this->model('Jurusan_model')->getAll()
+            'jurusan' => $this->model('Jurusan_model')->getAll(),
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('jurusan/index', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function store()

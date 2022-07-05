@@ -29,10 +29,11 @@ class Dashboard extends Controller
 
                 'totalCutiKhususRejected' => $this->model('Dashboard_model')->getCutiKhususRejected($_SESSION['user']['id_user']),
                 'totalCutiKhususRejectedHari' => $this->model('Dashboard_model')->getCutiKhususRejectedHari($_SESSION['user']['id_user']),
+                'user_login' => $this->model('Auth_model')->getAll()
             ];
             $this->view('templates/dashboard/header', $data);
             $this->view('dashboard/index', $data);
-            $this->view('templates/dashboard/footer');
+            $this->view('templates/dashboard/footer', $data);
         }
     }
 }

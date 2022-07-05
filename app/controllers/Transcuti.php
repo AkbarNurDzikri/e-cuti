@@ -12,13 +12,12 @@ class Transcuti extends Controller
             'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
             'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
             'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'filter' => 'Filtered by : Cuti Saya'
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('transcuti/index', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function cutiKaryawan()
@@ -31,12 +30,12 @@ class Transcuti extends Controller
             'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
             'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
             'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
-            'filter' => 'Filtered by : Cuti Karyawan'
+            'user_login' => $this->model('Auth_model')->getAll()
         ];
 
         $this->view('templates/dashboard/header', $data);
         $this->view('transcuti/cutiKaryawan', $data);
-        $this->view('templates/dashboard/footer');
+        $this->view('templates/dashboard/footer', $data);
     }
 
     public function store()
