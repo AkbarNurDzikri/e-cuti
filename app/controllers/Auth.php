@@ -23,7 +23,7 @@ class Auth extends Controller
             $_SESSION['user'] = $user;
             header('Location: ' . BASEURL . '/dashboard');
         } else {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Username atau password tidak dikenal !');
+            Flasher::setFlash('danger', 'Username atau password tidak dikenal ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/auth');
         }
     }

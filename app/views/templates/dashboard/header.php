@@ -93,18 +93,21 @@
     </a>
     
     <!-- Sidebar -->
-    <div class="sidebar mt-3">
+    <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-            <?php if($_SESSION['user']) : ?>
-                <img src="" class="img-circle elevation-2" alt="User Image">
+      <div class="user-panel mt-3 pb-0 mb-3 d-flex">
+        <div class="image mt-3">
+            <?php if($_SESSION['user']['gender'] == 'L') : ?>
+              <img src="<?= BASEURL; ?>/assets/vector/logo-user-man.png" class="img-circle elevation-2" alt="user-image">
+            <?php  else : ?>
+              <img src="<?= BASEURL; ?>/assets/vector/logo-user-woman.png" class="img-circle elevation-2" alt="user-image">
             <?php endif; ?>
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php if($_SESSION['user']) {echo 'Username'; }?></a>
+          <a href="#" class="d-block"><?= $_SESSION['user']['nama_user']; ?></a>
+          <p><a href="" class="dblock"><?= $_SESSION['user']['nama_jabatan'] . ' ' . $_SESSION['user']['nama_dept'] ?></a></p>
         </div>
-      </div> -->
+      </div>
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
@@ -242,14 +245,14 @@
               <li class="breadcrumb-item"><b>Breadcrumb</b></li>
               <li class="breadcrumb-item active"><b>Judul</b></li>
             </ol>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
+          </div>
+          <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">Parent Breadcrumb</li>
                 <li class="breadcrumb-item active">Judul</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+          </div> -->
+        </div>
         <hr>
 
           <?php if(isset($_SESSION['flash'])) : ?>

@@ -71,11 +71,11 @@ class Transcuti extends Controller
     public function approval()
     {
         if ($this->model('Transcuti_model')->approval($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil diupdate');
+            Flasher::setFlash('success', 'Data berhasil diupdate', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/transcuti/cutiKaryawan');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal diupdate');
+            Flasher::setFlash('warning', 'Data gagal diupdate', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti/cutiKaryawan');
             exit;
         }

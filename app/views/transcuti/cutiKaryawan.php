@@ -10,19 +10,6 @@
   <div class="tab-pane fade show active" id="CutiKaryawan" role="tabpanel" aria-labelledby="CutiKaryawan-tab">
     <div class="card font-primary table-responsive">
         <div class="card-body table-responsive">
-            <div class="row">
-                <div class="col-md mb-2">
-                    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#create<?= $_SESSION['user']['id_user'] ?>"><i class="fas fa-plus"></i> Baru</button> -->
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                        <i class="fas fa-feather-alt"></i> Buat Cuti
-                    </button>
-                    <div class="collapse" id="collapseExample2">
-                        <?php foreach($data['cuti'] as $c) : ?>
-                            <button type="button" class="badge badge-primary mb-1 border-0" data-toggle="modal" data-target="#create<?= $c['id']; ?>"><i class="fas fa-plus"></i> <?= $c['nama_cuti']; ?></button> </br>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
@@ -523,7 +510,7 @@
 
                         <input type="hidden" name="mulai_cuti" value="<?= $transcuti['mulai_cuti'] ?>">
                         <input type="hidden" name="selesai_cuti" value="<?= $transcuti['selesai_cuti'] ?>">
-                        <input type="hidden" name="cuti_out" value="<?= $transcuti['cuti_out'] ?>">
+                        
                         <input type="hidden" name="telp" value="<?= $transcuti['telp'] ?>">
                         <input type="hidden" name="keterangan" value="<?= $transcuti['keterangan'] ?>">
                         <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader') : ?>
@@ -564,8 +551,24 @@
                                 <div class="col-md-2">
                                     <p>Tgl Cuti</p>
                                 </div>
-                                <div class="col-md"> : <?= date('d-M-Y', strtotime($transcuti['mulai_cuti'])) . ' s/d ' . date('d-M-Y', strtotime($transcuti['selesai_cuti'])) . ' <b>( ' . $transcuti['cuti_out'] . ' Hari )</b>' ?></div>
+                                <div class="col-md"> : <?= date('D, d M Y', strtotime($transcuti['mulai_cuti'])) . ' s/d ' . date('D, d M Y', strtotime($transcuti['selesai_cuti'])) ?></div>
                             </div>
+
+                            <?php if($_SESSION['user']['nama_dept'] == 'HRD' && $_SESSION['user']['nama_jabatan'] == 'Supervisor') : ?>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <p>Durasi</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span><input type="text" class="form-control" name="cuti_out" id="cuti_out" value="<?=  $transcuti['cuti_out'] ?>" required></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="text-muted small-text"><i>Jika terdapat hari sabtu, durasi hari wajib diganti dengan input manual</i></span>
+                                    </div>
+                                </div>
+                            <?php else : ?>
+                                <input type="hidden" name="cuti_out" value="<?= $transcuti['cuti_out'] ?>">
+                            <?php endif; ?>
 
                             <div class="row">
                                 <div class="col-md-2">
@@ -586,7 +589,7 @@
                                     <p>Approval</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <select name="status" class="select2" requ style="width: 100%;"ired>
+                                    <select name="status" class="select2" style="width: 100%;" required>
                                         <option value="" disabled selected>Pilih Keputusan</option>
                                         <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader') : ?>
                                             <option value="3">Approve</option>
