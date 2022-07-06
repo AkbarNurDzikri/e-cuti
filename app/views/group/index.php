@@ -13,11 +13,11 @@
                     <th>Dept.</th>
                     <th>Jabatan</th>
                     <th>Jobdesc</th>
-                    <th>Atasan 1</th>
-                    <th>Atasan 2</th>
-                    <th>Atasan 3</th>
-                    <th>Atasan 4</th>
-                    <th>Atasan 5</th>
+                    <th>Approval 1</th>
+                    <th>Approval 2</th>
+                    <th>Approval 3</th>
+                    <th>Approval 4</th>
+                    <th>Approval 5</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
@@ -90,7 +90,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_1" class="form-label">Atasan 1</label>
+                            <label for="atasan_1" class="form-label">Approval 1</label>
                             <select name="atasan_1" class="custom-select select2" style="width: 100%;">
                                 <option value="" selected disabled>Pilih Atasan</option>
                                 <?php foreach ($data['karyawan'] as $karyawan) : ?>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_2" class="form-label">Atasan 2</label>
+                            <label for="atasan_2" class="form-label">Approval 2</label>
                             <select name="atasan_2" class="custom-select select2" style="width: 100%;">
                                 <option value="" selected disabled>Pilih Atasan</option>
                                 <?php foreach ($data['karyawan'] as $karyawan) : ?>
@@ -110,7 +110,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_3" class="form-label">Atasan 3</label>
+                            <label for="atasan_3" class="form-label">Approval 3</label>
                             <select name="atasan_3" class="custom-select select2" style="width: 100%;">
                                 <option value="" selected disabled>Pilih Atasan</option>
                                 <?php foreach ($data['karyawan'] as $karyawan) : ?>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_4" class="form-label">Atasan 4</label>
+                            <label for="atasan_4" class="form-label">Approval 4</label>
                             <select name="atasan_4" class="custom-select select2" style="width: 100%;">
                                 <option value="" selected disabled>Pilih Atasan</option>
                                 <?php foreach ($data['karyawan'] as $karyawan) : ?>
@@ -130,7 +130,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_5" class="form-label">Atasan 5</label>
+                            <label for="atasan_5" class="form-label">Approval 5</label>
                             <select name="atasan_5" class="custom-select select2" style="width: 100%;">
                                 <option value="" selected disabled>Pilih Atasan</option>
                                 <?php foreach ($data['karyawan'] as $karyawan) : ?>
@@ -199,7 +199,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="atasan_1" class="form-label">Atasan 1</label>
+                                <label for="atasan_1" class="form-label">Approval 1</label>
                                 <select name="atasan_1" id="atasan_1" class="custom-select select2" style="width: 100%;">
                                     <?php if ($group['atasan_1'] == null) : ?>
                                         <option value="NULL">-- No Data --</option>
@@ -215,7 +215,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="atasan_2" class="form-label">Atasan 2</label>
+                                <label for="atasan_2" class="form-label">Approval 2</label>
                                 <select name="atasan_2" class="custom-select select2" style="width: 100%;">
                                     <?php if ($group['atasan_2'] == null) : ?>
                                         <option value="NULL">-- No Data --</option>
@@ -229,7 +229,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="atasan_3" class="form-label">Atasan 3</label>
+                                <label for="atasan_3" class="form-label">Approval 3</label>
                                 <select name="atasan_3" class="custom-select select2" style="width: 100%;">
                                     <?php if ($group['atasan_3'] == null) : ?>
                                         <option value="NULL">-- No Data --</option>
@@ -245,7 +245,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="atasan_4" class="form-label">Atasan 4</label>
+                                <label for="atasan_4" class="form-label">Approval 4</label>
                                 <select name="atasan_4" class="custom-select select2" style="width: 100%;">
                                     <?php if ($group['atasan_4'] == null) : ?>
                                         <option value="NULL">-- No Data --</option>
@@ -259,7 +259,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="atasan_5" class="form-label">Atasan 5</label>
+                                <label for="atasan_5" class="form-label">Approval 5</label>
                                 <select name="atasan_5" class="custom-select select2" style="width: 100%;">
                                     <?php if ($group['atasan_5'] == null) : ?>
                                         <option value="">-- No Data --</option>
@@ -312,27 +312,27 @@
                             <input type="text" class="form-control" name="jabatan_id" id="jabatan_id" value="<?= $group['nama_jabatan']; ?>" readonly>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_1" class="form-label">Atasan 1</label>
+                            <label for="atasan_1" class="form-label">Approval 1</label>
                             <input type="text" class="form-control" name="atasan_1" id="atasan_1" value="<?= $group['atasan1']; ?>" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_2" class="form-label">Atasan 2</label>
+                            <label for="atasan_2" class="form-label">Approval 2</label>
                             <input type="text" class="form-control" name="atasan_2" value="<?= $group['atasan2']; ?>" readonly>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_3" class="form-label">Atasan 3</label>
+                            <label for="atasan_3" class="form-label">Approval 3</label>
                             <input type="text" class="form-control" name="atasan_3" value="<?= $group['atasan3']; ?>" readonly>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_4" class="form-label">Atasan 4</label>
+                            <label for="atasan_4" class="form-label">Approval 4</label>
                             <input type="text" class="form-control" name="atasan_4" value="<?= $group['atasan4']; ?>" readonly>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="atasan_5" class="form-label">Atasan 5</label>
+                            <label for="atasan_5" class="form-label">Approval 5</label>
                             <input type="text" class="form-control" name="atasan_5" value="<?= $group['atasan5']; ?>" readonly>
                         </div>
                     </div>

@@ -49,7 +49,7 @@ class Group extends Controller
                 exit;
             }
         } catch(Exception $e) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Gagal mengupdate data : <br> ' . $e->getMessage());
+            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Gagal mengupdate data : <br> ' . $e->getMessage() . '<br> Hapus terlebih dahulu, kemudian buat baru !');
             header('Location: ' . BASEURL . '/group');
             exit;
         }

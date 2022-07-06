@@ -105,7 +105,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block"><?= $_SESSION['user']['nama_user']; ?></a>
-          <p><a href="" class="dblock"><?= $_SESSION['user']['nama_jabatan'] . ' ' . $_SESSION['user']['nama_dept'] ?></a></p>
+          <p><a href="#" class="dblock"><?= $_SESSION['user']['nama_jabatan'] . ' ' . $_SESSION['user']['nama_dept'] ?></a></p>
         </div>
       </div>
 
