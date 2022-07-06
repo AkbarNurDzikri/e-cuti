@@ -7,7 +7,8 @@ class Cuti extends Controller
         $data = [
             'title' => 'Data Jenis Cuti',
             'cuti' => $this->model('Cuti_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Master Data / Jenis Cuti'
         ];
 
         $this->view('templates/dashboard/header', $data);

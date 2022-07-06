@@ -9,7 +9,8 @@ class Karyawan extends Controller
             'karyawan' => $this->model('Karyawan_model')->getAll(),
             'pendidikan' => $this->model('Pendidikan_model')->getAll(),
             'jurusan' => $this->model('Jurusan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Data Karyawan'
         ];
 
         $this->view('templates/dashboard/header', $data);

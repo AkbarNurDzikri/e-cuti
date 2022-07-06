@@ -7,7 +7,8 @@ class Jabatan extends Controller
         $data = [
             'title' => 'Data Jabatan',
             'jabatan' => $this->model('Jabatan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Master Data / Jabatan'
         ];
 
         $this->view('templates/dashboard/header', $data);

@@ -7,7 +7,8 @@ class Pendidikan extends Controller
         $data = [
             'title' => 'Data Pendidikan',
             'pendidikan' => $this->model('Pendidikan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Master Data / Pendidikan'
         ];
 
         $this->view('templates/dashboard/header', $data);

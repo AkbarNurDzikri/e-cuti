@@ -12,7 +12,8 @@ class User extends Controller
                 'user' => $this->model('User_model')->getAll(),
                 'member' => $this->model('Group_model')->getAll(),
                 'karyawan' => $this->model('Karyawan_model')->getAll(),
-                'user_login' => $this->model('Auth_model')->getAll()
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Users'
             ];
 
             $this->view('templates/dashboard/header', $data);

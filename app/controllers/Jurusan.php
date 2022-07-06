@@ -7,7 +7,8 @@ class Jurusan extends Controller
         $data = [
             'title' => 'Data Jurusan',
             'jurusan' => $this->model('Jurusan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Master Data / Jurusan'
         ];
 
         $this->view('templates/dashboard/header', $data);

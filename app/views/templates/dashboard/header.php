@@ -251,8 +251,8 @@
           <div class="col-sm">
             <!-- page title -->
             <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><b>Breadcrumb</b></li>
-              <li class="breadcrumb-item active"><b>Judul</b></li>
+              <!-- <li class="breadcrumb-item active"><b>Breadcrumb</b></li> -->
+              <li class="breadcrumb-item"><h4><?= $data['breadcrumb']; ?></h4></li>
             </ol>
           </div>
           <!-- <div class="col-sm-6">

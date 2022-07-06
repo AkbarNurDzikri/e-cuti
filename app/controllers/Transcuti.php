@@ -12,7 +12,8 @@ class Transcuti extends Controller
             'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
             'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
             'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Dafar Cuti Saya'
         ];
 
         $this->view('templates/dashboard/header', $data);
@@ -30,7 +31,8 @@ class Transcuti extends Controller
             'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
             'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
             'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Daftar Cuti Karyawan'
         ];
 
         $this->view('templates/dashboard/header', $data);

@@ -7,7 +7,8 @@ class Dept extends Controller
         $data = [
             'title' => 'Data Departemen',
             'dept' => $this->model('Dept_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll()
+            'user_login' => $this->model('Auth_model')->getAll(),
+            'breadcrumb' => 'Master Data / Department'
         ];
 
         $this->view('templates/dashboard/header', $data);
