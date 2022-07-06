@@ -1,10 +1,16 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" href="<?= BASEURL; ?>/transcuti" role="tab" aria-controls="CutiSaya" aria-selected="true">Cuti Saya</a>
-  </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" href="<?= BASEURL; ?>/transcuti" role="tab" aria-controls="CutiSaya" aria-selected="true">Cuti Saya</a>
+    </li>
     <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Manager' || $_SESSION['user']['nama_jabatan'] == 'Factory Manager' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
         <li class="nav-item" role="presentation">
             <a class="nav-link" href="<?= BASEURL; ?>/transcuti/cutiKaryawan" role="tab" aria-controls="CutiKaryawan" aria-selected="false">Cuti Karyawan</a>
+        </li>
+    <?php endif; ?>
+
+    <?php if($_SESSION['user']['nama_dept'] == 'HRD') : ?>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="<?= BASEURL; ?>/transcuti/sisaCutiKaryawan" role="tab" aria-controls="SisaCutiKaryawan" aria-selected="false">Sisa Cuti Karyawan</a>
         </li>
     <?php endif; ?>
 </ul>
@@ -137,6 +143,9 @@
     </div>
   </div>
   <div class="tab-pane fade" id="CutiKaryawan" role="tabpanel" aria-labelledby="CutiKaryawan-tab">
+    ...
+  </div>
+  <div class="tab-pane fade" id="SisaCutiKaryawan" role="tabpanel" aria-labelledby="SisaCutiKaryawan-tab">
     ...
   </div>
 </div>

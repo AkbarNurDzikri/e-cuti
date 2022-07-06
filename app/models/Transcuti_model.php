@@ -58,6 +58,12 @@ class Transcuti_model
         return $this->db->single();
     }
 
+    public function getCutiOut()
+    {
+        $this->db->query("SELECT kid.karyawan_id AS id_karyawan, nm.nama AS nama_karyawan, SUM(IF(status = 7, cuti_out, 0)) AS cuti_out FROM transcuti AS kid INNER JOIN karyawan AS nm ON kid.karyawan_id = nm.id GROUP BY karyawan_id");
+        return $this->db->resultSet();
+    }
+
     public function getMasterCuti()
     {
         $this->db->query("SELECT * FROM cuti");

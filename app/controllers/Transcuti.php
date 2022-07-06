@@ -40,6 +40,18 @@ class Transcuti extends Controller
         $this->view('templates/dashboard/footer', $data);
     }
 
+    public function sisaCutiKaryawan()
+    {
+        $data = [
+            'breadcrumb' => 'Sisa Cuti Karyawan',
+            'cuti_diambil' => $this->model('Transcuti_model')->getCutiOut()
+        ];
+
+        $this->view('templates/dashboard/header', $data);
+        $this->view('transcuti/sisaCutiKaryawan', $data);
+        $this->view('templates/dashboard/footer', $data);
+    }
+
     public function store()
     {
         if ($_POST['cuti_out'] == 'Invalid Date !') {
