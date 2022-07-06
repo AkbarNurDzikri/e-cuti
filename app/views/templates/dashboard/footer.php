@@ -94,7 +94,7 @@
                   
                   <!-- <a href="" class="btn btn-dark"><i class="fas fa-cog"></i> Pengaturan</a> -->
                   <a class="btn btn-dark" data-toggle="modal" data-target="#gantiPassw" href="#" role="button">
-                    <i class="fas fa-cog"></i> Pengaturan
+                    <i class="fas fa-cog"></i> Ganti Password
                   </a>
                 </div>
               </div>
