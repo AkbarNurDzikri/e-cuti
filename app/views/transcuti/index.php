@@ -85,21 +85,21 @@
                                 <?php if ($transcuti['status'] == 1) : ?>
                                     <p class="text-primary">Adjustment by <b><?= $transcuti['creator']; ?></b> <br> <?= date('d-M-Y H:i', strtotime($transcuti['created_at'])); ?></p>
                                 <?php elseif ($transcuti['status'] == 2) : ?>
-                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi Leader
+                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi <?= $transcuti['atasan1']?>
                                 <?php elseif ($transcuti['status'] == 3) : ?>
-                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi Supervisor
+                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi <?= $transcuti['atasan2']?>
                                 <?php elseif ($transcuti['status'] == 30) : ?>
                                     <p class="text-danger"><i class="fa-solid fa-xmark"></i> Ditolak oleh <b><?= $transcuti['atasan1']; ?></b> <br> <?= date('d-M-Y H:i', strtotime($transcuti['updated_at'])); ?></p>
                                 <?php elseif ($transcuti['status'] == 4) : ?>
-                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi Manager
+                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi <?= $transcuti['atasan3']?>
                                 <?php elseif ($transcuti['status'] == 40) : ?>
                                     <p class="text-danger"><i class="fa-solid fa-xmark"></i> Ditolak oleh <b><?= $transcuti['atasan2']; ?></b> <br> <?= date('d-M-Y H:i', strtotime($transcuti['updated_at'])); ?></p>
                                 <?php elseif ($transcuti['status'] == 5) : ?>
-                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi Factory Manager
+                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi <?= $transcuti['atasan4']?>
                                 <?php elseif ($transcuti['status'] == 50) : ?>
                                     <p class="text-danger"><i class="fa-solid fa-xmark"></i> Ditolak oleh <b><?= $transcuti['atasan3']; ?></b> <br> <?= date('d-M-Y H:i', strtotime($transcuti['updated_at'])); ?></p>
                                 <?php elseif ($transcuti['status'] == 6) : ?>
-                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi HRD
+                                    <i class="fa-solid fa-hourglass"></i> Menunggu konfirmasi <?= $transcuti['atasan5']?>
                                 <?php elseif ($transcuti['status'] == 60) : ?>
                                     <p class="text-danger"><i class="fa-solid fa-xmark"></i> Ditolak oleh <b><?= $transcuti['atasan4']; ?></b> <br> <?= date('d-M-Y H:i', strtotime($transcuti['updated_at'])); ?></p>
                                 <?php elseif ($transcuti['status'] == 7) : ?>
@@ -149,51 +149,6 @@
     ...
   </div>
 </div>
-
-<!-- <div class="row mb-1">
-    <div class="col-md text-start">
-        <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' or $_SESSION['user']['nama_jabatan'] == 'Supervisor' or $_SESSION['user']['nama_jabatan'] == 'Manager' or $_SESSION['user']['nama_jabatan'] == 'Factory Manager' or $_SESSION['user']['nama_jabatan'] == 'Administrator System') : ?>
-            <div class="col-md text-start">
-                <button class="btn btn-success mb-3" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-                    <i class="fa-solid fa-filter"></i> Filter Data
-                </button>
-                <div class="collapse" id="collapseExample2">
-                    <a href="<?= BASEURL; ?>/transcuti" class="badge bg-success mb-1 text-decoration-none">Cuti Saya</a> <br>
-                    <a href="<?= BASEURL; ?>/transcuti/cutiKaryawan" class="badge bg-success mb-3 text-decoration-none">Cuti Karyawan</a>
-                </div>
-            </div>
-            <p class="text-muted text-small"><?= $data['filter']; ?></p>
-        <?php endif; ?>
-    </div>
-
-    <div class="col-md text-end">
-        <?php if ($_SESSION['user']['gender'] == 'L') : ?>
-            <img src="<?= BASEURL; ?>/assets/vector/user-man.png" alt="" style="width: 60px;">
-            <span class="badge bg-dark">Sisa Hak Cuti : <?= $data['hak_cuti']['hak_cuti_tahunan'] + $data['cuti_in']['SUM(cuti_in)'] - $data['cuti_out']['SUM(cuti_out)'] ?> Hari</span> <br>
-            <button class="badge bg-dark border-0" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-                <?= $_SESSION['user']['nama_user']; ?> | <?= $_SESSION['user']['nama_jabatan'] ?> <?= $_SESSION['user']['nama_dept'] ?> <i class="ms-3 fa-solid fa-angle-down"></i>
-            </button>
-            <div class="collapse" id="collapseExample3">
-                <button type="button" class="badge bg-dark border-0 my-2" data-toggle="modal" data-target="#gantiPassw<?= $_SESSION['user']['id_user'] ?>">
-                    Ganti Password
-                </button> <br>
-                <a href="<?= BASEURL; ?>/auth/logout" class="badge bg-dark mb-1 text-decoration-none">Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-            </div>
-        <?php else : ?>
-            <img src="<?= BASEURL; ?>/assets/vector/user-woman.png" alt="" style="width: 60px;">
-            <span class="badge bg-dark">Sisa Hak Cuti : <?= $data['hak_cuti']['hak_cuti_tahunan'] + $data['cuti_in']['SUM(cuti_in)'] - $data['cuti_out']['SUM(cuti_out)'] ?> Hari</span> <br>
-            <button class="badge bg-dark border-0" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-                <?= $_SESSION['user']['nama_user']; ?> | <?= $_SESSION['user']['nama_jabatan'] ?> <?= $_SESSION['user']['nama_dept'] ?> <i class="ms-3 fa-solid fa-angle-down"></i>
-            </button>
-            <div class="collapse" id="collapseExample3">
-                <button type="button" class="badge bg-dark border-0 my-2" data-toggle="modal" data-target="#gantiPassw<?= $_SESSION['user']['id_user'] ?>">
-                    Ganti Password
-                </button> <br>
-                <a href="<?= BASEURL; ?>/auth/logout" class="badge bg-dark mb-1 text-decoration-none">Keluar <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-            </div>
-        <?php endif; ?>
-    </div>
-</div> -->
 
 <?php foreach ($data['cuti'] as $c) : ?>
     <!-- Modal -->
@@ -288,7 +243,7 @@
                                 <input type="hidden" name="cuti_id" value="<?= $c['id'] ?>">
 
                                 <input type="hidden" name="karyawan_id" value="<?= $_SESSION['user']['id_user'] ?>">
-                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
+                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
                                     <input type="hidden" name="status" value="3">
                                 <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Staff' && $_SESSION['user']['nama_dept'] == 'Production') : ?>
                                     <input type="hidden" name="status" value="3">
@@ -311,19 +266,70 @@
                                 <?php endif; ?>
 
                                 <div class="row">
-                                    <div class="col-md mb-3">
+                                    <div class="col-md-6 mb-3">
                                         <label for="karyawan_id" class="form-label">Nama Karyawan</label>
                                         <input type="text" id="karyawan_id" class="form-control" value="<?= $_SESSION['user']['nama_user'] ?>" readonly>
                                     </div>
+                                    <?php if($_SESSION['user']['nama_jabatan'] !== 'Leader' && $_SESSION['user']['nama_jabatan'] !== 'Supervisor' && $_SESSION['user']['nama_jabatan'] !== 'Manager' && $_SESSION['user']['nama_jabatan'] !== 'Factory Manager') : ?>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="approval_1" class="form-label">Leader</label>
+                                            <select name="approval_1" class="select2" style="width: 100%;" required>
+                                                <option value="" selected disabled>Pilih Leader</option>
+                                                <?php foreach ($data['leader'] as $l) : ?>
+                                                    <option value="<?= $l['leader_id'] ?>"><?= $l['nama_leader']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php elseif($_SESSION['user']['nama_jabatan'] == 'Leader') : ?>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="approval_2" class="form-label">Supervisor</label>
+                                            <select name="approval_2" class="select2" style="width: 100%;" required>
+                                                <option value="" selected disabled>Pilih Supervisor</option>
+                                                <?php foreach ($data['supervisor'] as $l) : ?>
+                                                    <option value="<?= $l['supervisor_id'] ?>"><?= $l['nama_supervisor']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php elseif($_SESSION['user']['nama_jabatan'] == 'Supervisor') : ?>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="approval_3" class="form-label">Manager</label>
+                                            <select name="approval_3" class="select2" style="width: 100%;" required>
+                                                <option value="" selected disabled>Pilih Manager</option>
+                                                <?php foreach ($data['manager'] as $l) : ?>
+                                                    <option value="<?= $l['manager_id'] ?>"><?= $l['nama_manager']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php elseif($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="approval_4" class="form-label">Factory Manager</label>
+                                            <select name="approval_4" class="select2" style="width: 100%;" required>
+                                                <option value="" selected disabled>Pilih Factory Manager</option>
+                                                <?php foreach ($data['factory_manager'] as $l) : ?>
+                                                    <option value="<?= $l['factory_manager_id'] ?>"><?= $l['nama_factory_manager']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php elseif($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="approval_5" class="form-label">HRD</label>
+                                            <select name="approval_5" class="select2" style="width: 100%;" required>
+                                                <option value="" selected disabled>Pilih HRD</option>
+                                                <?php foreach ($data['hrd'] as $l) : ?>
+                                                    <option value="<?= $l['hrd_id'] ?>"><?= $l['nama_supervisor']; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="saldo_awal" class="form-label">Sisa Hak Cuti</label>
                                         <?php
-                                        $cuti_in = $data['cuti_in']['SUM(cuti_in)'];
-                                        $cuti_out = $data['cuti_out']['SUM(cuti_out)'];
-                                        $hak_cuti = $data['hak_cuti']['hak_cuti_tahunan'];
+                                            $cuti_in = $data['cuti_in']['SUM(cuti_in)'];
+                                            $cuti_out = $data['cuti_out']['SUM(cuti_out)'];
+                                            $hak_cuti = $data['hak_cuti']['hak_cuti_tahunan'];
                                         ?>
                                         <input type="text" class="form-control" id="saldo_awal" value="<?= $hak_cuti + $cuti_in - $cuti_out ?>" readonly>
                                     </div>

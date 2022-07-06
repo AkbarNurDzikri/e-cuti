@@ -39,6 +39,43 @@ class Group_model
         return $this->db->resultSet();
     }
 
+    public function getLeader($data)
+    {
+        $this->db->query("SELECT namkar.nama AS nama_leader, idk.id AS leader_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE dpt.nama_dept = :data AND jbt.nama_jabatan = 'Leader' ORDER BY nama_leader ASC");
+
+        $this->db->bind('data', $data);
+        return $this->db->resultSet();
+    }
+
+    public function getSupervisor($data)
+    {
+        $this->db->query("SELECT namkar.nama AS nama_supervisor, idk.id AS supervisor_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE dpt.nama_dept = :data AND jbt.nama_jabatan = 'Supervisor' ORDER BY nama_supervisor ASC");
+
+        $this->db->bind('data', $data);
+        return $this->db->resultSet();
+    }
+
+    public function getManager()
+    {
+        $this->db->query("SELECT namkar.nama AS nama_manager, idk.id AS manager_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE jbt.nama_jabatan = 'Manager' ORDER BY nama_manager ASC");
+
+        return $this->db->resultSet();
+    }
+
+    public function getFactoryManager()
+    {
+        $this->db->query("SELECT namkar.nama AS nama_factory_manager, idk.id AS factory_manager_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE jbt.nama_jabatan = 'Factory Manager' ORDER BY nama_factory_manager ASC");
+
+        return $this->db->resultSet();
+    }
+
+    public function getHrd()
+    {
+        $this->db->query("SELECT namkar.nama AS nama_hrd, idk.id AS hrd_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE dpt.nama_dept = 'HRD' AND jbt.nama_jabatan = 'Supervisor' ORDER BY nama_hrd ASC");
+
+        return $this->db->resultSet();
+    }
+
     public function duplicateValidation($data)
     {
         $this->db->query("SELECT * FROM `group` INNER JOIN karyawan ON group.karyawan_id = karyawan.id WHERE karyawan_id = :data");
