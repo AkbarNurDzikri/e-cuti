@@ -19,15 +19,15 @@ class Pendidikan extends Controller
     {
         $cek = $this->model('Pendidikan_model')->validasi($_POST['nama_pendidikan']);
         if ($cek > 0) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', '<b>Maaf, data yang Anda masukkan sudah ada !</b>');
+            Flasher::setFlash('danger', 'Maaf, data yang Anda masukkan sudah ada ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         } elseif ($this->model('Pendidikan_model')->store($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil ditambahkan');
+            Flasher::setFlash('success', 'Data berhasil ditambahkan ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal ditambahkan');
+            Flasher::setFlash('warning', 'Data gagal ditambahkan ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         }
@@ -36,11 +36,11 @@ class Pendidikan extends Controller
     public function update()
     {
         if ($this->model('Pendidikan_model')->update($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil diupdate');
+            Flasher::setFlash('success', 'Data berhasil diupdate ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal diupdate');
+            Flasher::setFlash('warning', 'Data gagal diupdate ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         }
@@ -49,11 +49,11 @@ class Pendidikan extends Controller
     public function delete($id)
     {
         if ($this->model('Pendidikan_model')->destroy($id) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil dihapus');
+            Flasher::setFlash('success', 'Data berhasil dihapus ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal dihapus');
+            Flasher::setFlash('warning', 'Data gagal dihapus ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/pendidikan');
             exit;
         }

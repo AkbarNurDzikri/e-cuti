@@ -40,16 +40,14 @@ class Auth extends Controller
         $cek = $this->model('Auth_model')->check($_SESSION['user']['id_user']);
 
         if (password_verify($_POST['passwordLama'], $cek['password']) == false) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Password salah !');
+            Flasher::setFlash('danger', 'Password salah ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/transcuti');
         } elseif ($_POST['password'] !== $_POST['konfirmPassword']) {
-            Flasher::setFlash('danger', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Konfirmasi password tidak sesuai !');
+            Flasher::setFlash('danger', 'Konfirmasi password tidak sesuai ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/transcuti');
         } elseif ($this->model('Auth_model')->update($_POST) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>', 'Update password berhasil !');
+            Flasher::setFlash('success', 'Update password berhasil ', '<i class="fa-2x fa-solid fa-circle-exclamation"></i>');
             header('Location: ' . BASEURL . '/auth');
-            // session_unset();
-            // session_destroy();
         }
     }
 }

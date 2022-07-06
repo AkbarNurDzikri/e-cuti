@@ -41,27 +41,27 @@ class Transcuti extends Controller
     public function store()
     {
         if ($_POST['cuti_out'] == 'Invalid Date !') {
-            Flasher::setFlash('warning', 'Tanggal yang Anda pilih tidak valid !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Tanggal yang Anda pilih tidak valid ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == null or $_POST['cuti_out'] == 0) {
-            Flasher::setFlash('warning', 'Cuti Diambil tidak terdeteksi ! Ulangi permohonan cuti Anda', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Cuti Diambil tidak terdeteksi ! Ulangi permohonan cuti Anda ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == 'Saldo kurang !') {
-            Flasher::setFlash('warning', 'Saldo cuti Anda tidak cukup ! Hubungi HRD jika perlu', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Saldo cuti Anda tidak cukup ! Hubungi HRD jika perlu ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($_POST['cuti_out'] == 'NaN') {
-            Flasher::setFlash('warning', 'Terjadi kesalahan. Silahkan ulangi permohonan cuti Anda !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Terjadi kesalahan. Silahkan ulangi permohonan cuti Anda ! ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } elseif ($this->model('Transcuti_model')->store($_POST) > 0) {
-            Flasher::setFlash('success', 'Berhasil membuat permohonan cuti', '<i class="fa-2x fa-solid fa-check"></i>');
+            Flasher::setFlash('success', 'Berhasil membuat permohonan cuti ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } else {
-            Flasher::setFlash('warning', 'Gagal membuat permohonan cuti !', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Gagal membuat permohonan cuti ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         }
@@ -70,11 +70,11 @@ class Transcuti extends Controller
     public function approval()
     {
         if ($this->model('Transcuti_model')->approval($_POST) > 0) {
-            Flasher::setFlash('success', 'Data berhasil diupdate', '<i class="fa-2x fa-solid fa-check"></i>');
+            Flasher::setFlash('success', 'Berhasil memberikan keputusan ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/transcuti/cutiKaryawan');
             exit;
         } else {
-            Flasher::setFlash('warning', 'Data gagal diupdate', '<i class="fa-2x fa-solid fa-circle-info"></i>');
+            Flasher::setFlash('warning', 'Gagal memberikan keputusan ', '<i class="fa-2x fa-solid fa-circle-info"></i>');
             header('Location: ' . BASEURL . '/transcuti/cutiKaryawan');
             exit;
         }
@@ -83,11 +83,11 @@ class Transcuti extends Controller
     public function delete($id)
     {
         if ($this->model('Transcuti_model')->destroy($id) > 0) {
-            Flasher::setFlash('success', '<i class="fa-2x fa-solid fa-check"></i>', 'Data berhasil dihapus');
+            Flasher::setFlash('success', 'Berhasil menghapus data ', '<i class="fa-2x fa-solid fa-check"></i>');
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         } else {
-            Flasher::setFlash('warning', '<i class="fa-2x fa-solid fa-circle-info"></i>', 'Data gagal dihapus');
+            Flasher::setFlash('warning', 'Gagal menghapus data ', '<i class="fa-2x fa-solid fa-circle-info"></i>' );
             header('Location: ' . BASEURL . '/transcuti');
             exit;
         }
