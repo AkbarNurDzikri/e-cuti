@@ -131,101 +131,110 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="fas fa-layer-group"></i>
-              <p class="ml-1">
-                Grouping Karyawan
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/karyawan" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Karyawan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/group" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Group</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <?php if($_SESSION['user']['nama_dept'] == 'HRD' || $_SESSION['user']['nama_dept'] == 'Admin Sistem') : ?>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="fas fa-layer-group"></i>
+                <p class="ml-1">
+                  Grouping Karyawan
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/karyawan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Karyawan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/group" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Group</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-          <li class="nav-item">
-            <a href="<?=  BASEURL; ?>/transcuti" class="nav-link">
-              <i class="fas fa-feather-alt"></i>
-              <p class="ml-2">
-                Trans Cuti
-              </p>
-            </a>
-          </li>
+            <li class="nav-item">
+              <a href="<?=  BASEURL; ?>/transcuti" class="nav-link">
+                <i class="fas fa-feather-alt"></i>
+                <p class="ml-2">
+                  Trans Cuti
+                </p>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-file-alt ml-1"></i>
-              <p class="ml-2">
-                Post Manager
-              </p>
-            </a>
-          </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-file-alt ml-1"></i>
+                <p class="ml-2">
+                  Post Manager
+                </p>
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-database"></i>
-              <p class="ml-2">
-                Master Data
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-database"></i>
+                <p class="ml-2">
+                  Master Data
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/pendidikan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pendidikan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/jurusan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Jurusan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/dept" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Department</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/jabatan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Jabatan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/cuti" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cuti</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= BASEURL; ?>/user" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Users</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <?php else : ?>
               <li class="nav-item">
-                <a href="<?= BASEURL; ?>/pendidikan" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pendidikan</p>
+                <a href="<?=  BASEURL; ?>/transcuti" class="nav-link">
+                  <i class="fas fa-feather-alt"></i>
+                  <p class="ml-2">
+                    Trans Cuti
+                  </p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/jurusan" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jurusan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/dept" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Department</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/jabatan" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jabatan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/cuti" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cuti</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= BASEURL; ?>/user" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Users</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- <li class="nav-header">EXAMPLES</li> -->
+          <?php endif; ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
