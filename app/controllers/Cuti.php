@@ -4,16 +4,20 @@ class Cuti extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Jenis Cuti',
-            'cuti' => $this->model('Cuti_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Master Data / Jenis Cuti'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Jenis Cuti',
+                'cuti' => $this->model('Cuti_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Jenis Cuti'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('cuti/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('cuti/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

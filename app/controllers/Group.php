@@ -4,19 +4,23 @@ class Group extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Group',
-            'group' => $this->model('Group_model')->getAll(),
-            'karyawan' => $this->model('Karyawan_model')->getAll(),
-            'dept' => $this->model('Dept_model')->getAll(),
-            'jabatan' => $this->model('Jabatan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Grouping Karyawan'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Group',
+                'group' => $this->model('Group_model')->getAll(),
+                'karyawan' => $this->model('Karyawan_model')->getAll(),
+                'dept' => $this->model('Dept_model')->getAll(),
+                'jabatan' => $this->model('Jabatan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Grouping Karyawan'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('group/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('group/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

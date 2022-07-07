@@ -4,26 +4,30 @@ class Transcuti extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Trans Cuti',
-            'transcuti' => $this->model('Transcuti_model')->getCutiSaya($_SESSION['user']['id_user']),
-            'cuti' => $this->model('Transcuti_model')->getMasterCuti(),
-            'karyawan' => $this->model('Karyawan_model')->getAll(),
-            'leader' => $this->model('Group_model')->getLeader($_SESSION['user']['nama_dept']),
-            'supervisor' => $this->model('Group_model')->getSupervisor($_SESSION['user']['nama_dept']),
-            'manager' => $this->model('Group_model')->getManager(),
-            'factory_manager' => $this->model('Group_model')->getFactoryManager(),
-            'hrd' => $this->model('Group_model')->getHrd($_SESSION['user']['nama_dept']),
-            'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
-            'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
-            'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Dafar Cuti Saya'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Trans Cuti',
+                'transcuti' => $this->model('Transcuti_model')->getCutiSaya($_SESSION['user']['id_user']),
+                'cuti' => $this->model('Transcuti_model')->getMasterCuti(),
+                'karyawan' => $this->model('Karyawan_model')->getAll(),
+                'leader' => $this->model('Group_model')->getLeader($_SESSION['user']['nama_dept']),
+                'supervisor' => $this->model('Group_model')->getSupervisor($_SESSION['user']['nama_dept']),
+                'manager' => $this->model('Group_model')->getManager(),
+                'factory_manager' => $this->model('Group_model')->getFactoryManager(),
+                'hrd' => $this->model('Group_model')->getHrd($_SESSION['user']['nama_dept']),
+                'hak_cuti' => $this->model('Transcuti_model')->getHakCuti($_SESSION['user']['id_user']),
+                'cuti_in' => $this->model('Transcuti_model')->getTotalCutiIn($_SESSION['user']['id_user']),
+                'cuti_out' => $this->model('Transcuti_model')->getTotalCutiOut($_SESSION['user']['id_user']),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Dafar Cuti Saya'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('transcuti/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('transcuti/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function cutiKaryawan()

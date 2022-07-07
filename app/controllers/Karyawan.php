@@ -4,18 +4,22 @@ class Karyawan extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Karyawan',
-            'karyawan' => $this->model('Karyawan_model')->getAll(),
-            'pendidikan' => $this->model('Pendidikan_model')->getAll(),
-            'jurusan' => $this->model('Jurusan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Data Karyawan'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Karyawan',
+                'karyawan' => $this->model('Karyawan_model')->getAll(),
+                'pendidikan' => $this->model('Pendidikan_model')->getAll(),
+                'jurusan' => $this->model('Jurusan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Data Karyawan'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('karyawan/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('karyawan/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

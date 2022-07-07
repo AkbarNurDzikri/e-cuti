@@ -4,16 +4,20 @@ class Jurusan extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Jurusan',
-            'jurusan' => $this->model('Jurusan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Master Data / Jurusan'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Jurusan',
+                'jurusan' => $this->model('Jurusan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Jurusan'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('jurusan/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('jurusan/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

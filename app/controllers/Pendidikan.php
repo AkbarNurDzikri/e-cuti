@@ -4,16 +4,20 @@ class Pendidikan extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Pendidikan',
-            'pendidikan' => $this->model('Pendidikan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Master Data / Pendidikan'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Pendidikan',
+                'pendidikan' => $this->model('Pendidikan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Pendidikan'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('pendidikan/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('pendidikan/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

@@ -4,16 +4,20 @@ class Dept extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Departemen',
-            'dept' => $this->model('Dept_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Master Data / Department'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Departemen',
+                'dept' => $this->model('Dept_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Department'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('dept/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('dept/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()

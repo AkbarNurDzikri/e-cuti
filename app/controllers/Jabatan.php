@@ -4,16 +4,20 @@ class Jabatan extends Controller
 {
     public function index()
     {
-        $data = [
-            'title' => 'Data Jabatan',
-            'jabatan' => $this->model('Jabatan_model')->getAll(),
-            'user_login' => $this->model('Auth_model')->getAll(),
-            'breadcrumb' => 'Master Data / Jabatan'
-        ];
+        if(!isset($_SESSION['user'])) {
+            header('Location: ' . BASEURL . '/auth');
+        } else {
+            $data = [
+                'title' => 'Data Jabatan',
+                'jabatan' => $this->model('Jabatan_model')->getAll(),
+                'user_login' => $this->model('Auth_model')->getAll(),
+                'breadcrumb' => 'Master Data / Jabatan'
+            ];
 
-        $this->view('templates/dashboard/header', $data);
-        $this->view('jabatan/index', $data);
-        $this->view('templates/dashboard/footer', $data);
+            $this->view('templates/dashboard/header', $data);
+            $this->view('jabatan/index', $data);
+            $this->view('templates/dashboard/footer', $data);
+        }
     }
 
     public function store()
