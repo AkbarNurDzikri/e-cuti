@@ -176,18 +176,18 @@
                                     <?php endforeach; ?>
                                 </select>
 
-                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader') : ?>
-                                    <input type="hidden" name="status" value="3">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
-                                    <input type="hidden" name="status" value="5">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
-                                    <input type="hidden" name="status" value="6">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php else : ?>
+                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Helper' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Helper' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
                                     <input type="hidden" name="status" value="2">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Maintenance' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Production') : ?>
+                                    <input type="hidden" name="status" value="3">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'PPIC' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Purchasing' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
+                                    <input type="hidden" name="status" value="4">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $_SESSION['user']['nama_dept'] == 'Management') : ?>
+                                    <input type="hidden" name="status" value="5">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $_SESSION['user']['nama_dept'] == 'Management') : ?>
+                                    <input type="hidden" name="status" value="6">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
+                                    <input type="hidden" name="status" value="7">
                                 <?php endif; ?>
 
                                 <div class="row mt-3">
@@ -243,26 +243,18 @@
                                 <input type="hidden" name="cuti_id" value="<?= $c['id'] ?>">
 
                                 <input type="hidden" name="karyawan_id" value="<?= $_SESSION['user']['id_user'] ?>">
-                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
-                                    <input type="hidden" name="status" value="3">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Staff' && $_SESSION['user']['nama_dept'] == 'Production') : ?>
-                                    <input type="hidden" name="status" value="3">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Staff' && $_SESSION['user']['nama_dept'] == 'QC') : ?>
-                                    <input type="hidden" name="status" value="3">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Staff' && $_SESSION['user']['nama_dept'] == 'Purchasing') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Staff' && $_SESSION['user']['nama_dept'] == 'PPIC') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
-                                    <input type="hidden" name="status" value="5">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
-                                    <input type="hidden" name="status" value="6">
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
-                                    <input type="hidden" name="status" value="4">
-                                <?php else : ?>
+                                <?php if ($_SESSION['user']['nama_jabatan'] == 'Helper' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Helper' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
                                     <input type="hidden" name="status" value="2">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Maintenance' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Production') : ?>
+                                    <input type="hidden" name="status" value="3">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Operator' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Warehouse' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'PPIC' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'Purchasing' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
+                                    <input type="hidden" name="status" value="4">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $_SESSION['user']['nama_dept'] == 'Management') : ?>
+                                    <input type="hidden" name="status" value="5">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $_SESSION['user']['nama_dept'] == 'Management') : ?>
+                                    <input type="hidden" name="status" value="6">
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
+                                    <input type="hidden" name="status" value="7">
                                 <?php endif; ?>
 
                                 <div class="row">
