@@ -96,13 +96,13 @@
                             <td class="text-center">
                                 <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' && $transcuti['status'] == 2) : ?>
                                     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#approval<?= $transcuti['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD' && $transcuti['status'] == 3) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $transcuti['status'] == 3) : ?>
                                     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#approval<?= $transcuti['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $transcuti['status'] == 4) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $transcuti['status'] == 4) : ?>
                                     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#approval<?= $transcuti['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $transcuti['status'] == 5) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $transcuti['status'] == 5) : ?>
                                     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#approval<?= $transcuti['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'HRD' && $transcuti['status'] == 6) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD' && $transcuti['status'] == 6) : ?>
                                     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#approval<?= $transcuti['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
                                 <?php endif; ?>
 
@@ -114,9 +114,9 @@
                                     <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $transcuti['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
                                 <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD' && $transcuti['status'] == 4 && $transcuti['karyawan_id'] == $_SESSION['user']['id_user']) : ?>
                                     <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $transcuti['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $transcuti['status'] == 5 && $transcuti['karyawan_id'] == $_SESSION['user']['id_user']) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $transcuti['status'] == 5 && $transcuti['karyawan_id'] == $_SESSION['user']['id_user']) : ?>
                                     <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $transcuti['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
-                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager' && $transcuti['status'] == 6 && $transcuti['karyawan_id'] == $_SESSION['user']['id_user']) : ?>
+                                <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager' && $transcuti['status'] == 6 && $transcuti['karyawan_id'] == $_SESSION['user']['id_user']) : ?>
                                     <button class="btn btn-danger mb-2" data-toggle="modal" data-target="#confirmDelete<?= $transcuti['id']; ?>"><i class="fa-solid fa-trash-can"></i></a>
                                 <?php endif; ?>
                             </td>
@@ -223,19 +223,19 @@
                                 <div class="col-md-4">
                                     <select name="status" class="select2" style="width: 100%;" required>
                                         <option value="" disabled selected>Pilih Keputusan</option>
-                                        <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader') : ?>
+                                        <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Leader' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
                                             <option value="3">Approve</option>
                                             <option value="30">Reject</option>
-                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD') : ?>
+                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Production' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'QC' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'Maintenance') : ?>
                                             <option value="4">Approve</option>
                                             <option value="40">Reject</option>
-                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
+                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
                                             <option value="5">Approve</option>
                                             <option value="50">Reject</option>
-                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
+                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
                                             <option value="6">Approve</option>
                                             <option value="60">Reject</option>
-                                        <?php elseif ($_SESSION['user']['nama_dept'] == 'HRD' && $_SESSION['user']['nama_jabatan'] == 'Supervisor') : ?>
+                                        <?php elseif ($_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
                                             <option value="7">Approve</option>
                                             <option value="70">Reject</option>
                                         <?php endif; ?>
@@ -244,7 +244,7 @@
                             </div>
 
                             <div class="row">
-                                <?php if($_SESSION['user']['nama_jabatan'] !== 'Leader' && $_SESSION['user']['nama_jabatan'] !== 'Supervisor' && $_SESSION['user']['nama_jabatan'] !== 'Manager' && $_SESSION['user']['nama_jabatan'] !== 'Factory Manager') : ?>
+                                <?php if($_SESSION['user']['nama_jabatan'] !== 'Leader' && $_SESSION['user']['nama_jabatan'] !== 'Supervisor' && $_SESSION['user']['nama_jabatan'] !== 'Factory Manager' && $_SESSION['user']['nama_jabatan'] !== 'Manager' && $_SESSION['user']['nama_dept'] !== 'HRD') : ?>
                                     <div class="col-md-2">
                                         <p>Next Approval</p>
                                     </div>
@@ -268,24 +268,12 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                <?php elseif($_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD') : ?>
+                                <?php elseif($_SESSION['user']['nama_jabatan'] == 'Supervisor') : ?>
                                     <div class="col-md-2">
                                         <p>Next Approval</p>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <select name="approval_3" class="select2" style="width: 100%;" required>
-                                            <option value="" selected disabled>Pilih Manager</option>
-                                            <?php foreach ($data['manager'] as $l) : ?>
-                                                <option value="<?= $l['manager_id'] ?>"><?= $l['nama_manager']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                <?php elseif($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
-                                    <div class="col-md-2">
-                                        <p>Next Approval</p>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <select name="approval_4" class="select2" style="width: 100%;" required>
                                             <option value="" selected disabled>Pilih Factory Manager</option>
                                             <?php foreach ($data['factory_manager'] as $l) : ?>
                                                 <option value="<?= $l['factory_manager_id'] ?>"><?= $l['nama_factory_manager']; ?></option>
@@ -293,6 +281,18 @@
                                         </select>
                                     </div>
                                 <?php elseif($_SESSION['user']['nama_jabatan'] == 'Factory Manager') : ?>
+                                    <div class="col-md-2">
+                                        <p>Next Approval</p>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <select name="approval_4" class="select2" style="width: 100%;" required>
+                                            <option value="" selected disabled>Pilih Manager</option>
+                                            <?php foreach ($data['manager'] as $l) : ?>
+                                                <option value="<?= $l['manager_id'] ?>"><?= $l['nama_manager']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                <?php elseif($_SESSION['user']['nama_jabatan'] == 'Manager') : ?>
                                     <div class="col-md-2">
                                         <p>Next Approval</p>
                                     </div>

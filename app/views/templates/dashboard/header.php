@@ -135,7 +135,7 @@
             </a>
           </li>
 
-          <?php if($_SESSION['user']['nama_dept'] == 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Admin Sistem') : ?>
+          <?php if($_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Admin Sistem') : ?>
             <li class="nav-item">
               <a href="#" class="nav-link">
               <i class="fas fa-layer-group"></i>

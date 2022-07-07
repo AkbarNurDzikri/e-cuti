@@ -13,11 +13,6 @@
                     <th>Dept.</th>
                     <th>Jabatan</th>
                     <th>Jobdesc</th>
-                    <th>Approval 1</th>
-                    <th>Approval 2</th>
-                    <th>Approval 3</th>
-                    <th>Approval 4</th>
-                    <th>Approval 5</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
@@ -30,11 +25,6 @@
                         <td><?= $group['nama_dept']; ?></td>
                         <td><?= $group['nama_jabatan']; ?></td>
                         <td><?= $group['jobdesc']; ?></td>
-                        <td><?= $group['atasan1']; ?></td>
-                        <td><?= $group['atasan2']; ?></td>
-                        <td><?= $group['atasan3']; ?></td>
-                        <td><?= $group['atasan4']; ?></td>
-                        <td><?= $group['atasan5']; ?></td>
                         <td class="text-center">
                             <button class="btn btn-success mb-2" data-toggle="modal" data-target="#show<?= $group['id']; ?>"><i class="fa-solid fa-eye"></i></button>
                             <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#edit<?= $group['id']; ?>"><i class="fa-solid fa-pencil"></i></button>

@@ -71,7 +71,7 @@ class Group_model
 
     public function getHrd()
     {
-        $this->db->query("SELECT namkar.nama AS nama_hrd, idk.id AS hrd_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE dpt.nama_dept = 'HRD' AND jbt.nama_jabatan = 'Supervisor' ORDER BY nama_hrd ASC");
+        $this->db->query("SELECT namkar.nama AS nama_hrd, idk.id AS hrd_id, g.karyawan_id AS member_id, dpt.nama_dept AS nama_dept, jbt.nama_jabatan AS nama_jabatan FROM karyawan AS namkar INNER JOIN `group` AS g ON namkar.id = g.karyawan_id INNER JOIN dept AS dpt ON g.dept_id = dpt.id INNER JOIN jabatan AS jbt ON g.jabatan_id = jbt.id INNER JOIN karyawan AS idk ON g.karyawan_id = idk.id WHERE dpt.nama_dept = 'HRD' AND jbt.nama_jabatan = 'Admin' ORDER BY nama_hrd ASC");
 
         return $this->db->resultSet();
     }

@@ -2,7 +2,7 @@
     <li class="nav-item" role="presentation">
         <a class="nav-link" href="<?= BASEURL; ?>/transcuti" role="tab" aria-controls="CutiSaya" aria-selected="true">Cuti Saya</a>
     </li>
-    <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] !== 'HRD' || $_SESSION['user']['nama_jabatan'] == 'Manager' || $_SESSION['user']['nama_jabatan'] == 'Factory Manager' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
+    <?php if ($_SESSION['user']['nama_jabatan'] == 'Leader' || $_SESSION['user']['nama_jabatan'] == 'Supervisor' && $_SESSION['user']['nama_jabatan'] == 'Manager' || $_SESSION['user']['nama_jabatan'] == 'Factory Manager' || $_SESSION['user']['nama_jabatan'] == 'Admin' && $_SESSION['user']['nama_dept'] == 'HRD') : ?>
         <li class="nav-item" role="presentation">
             <a class="nav-link" href="<?= BASEURL; ?>/transcuti/cutiKaryawan" role="tab" aria-controls="CutiKaryawan" aria-selected="false">Cuti Karyawan</a>
         </li>
