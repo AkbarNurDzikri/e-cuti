@@ -1,0 +1,203 @@
+-- Old
+CREATE TABLE `karyawan` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `pendidikan_id` int NOT NULL,
+  `jurusan_id` int NOT NULL,
+  `nrp` varchar(15) NOT NULL,
+  `nik` varchar(16) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `tempat_lahir` varchar(50) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `jenkel` enum('L','P') NOT NULL,
+  `agama` enum('Islam','Katolik','Protestan','Hindu','Buddha','Konghucu') NOT NULL,
+  `alamat` varchar(150) NOT NULL,
+  `status_perkawinan` enum('0','1') NOT NULL,
+  `no_kk` varchar(20) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `email` varchar(20),
+  `ibu_kandung` varchar(20) NOT NULL,
+  `ayah_kandung` varchar(20) NOT NULL,
+  `bpjs_tk` varchar(20),
+  `bpjs_ks` varchar(20),
+  `npwp` varchar(20),
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_pendidikan` FOREIGN KEY (`pendidikan_id`) REFERENCES `pendidikan`(`id`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_jurusan` FOREIGN KEY (`jurusan_id`) REFERENCES `jurusan`(`id`) ON DELETE RESTRICT
+);
+
+-- New
+CREATE TABLE `karyawan` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `pendidikan_id` int NOT NULL,
+  `jurusan_id` int NOT NULL,
+  `nrp` varchar(15) NOT NULL,
+  `nik` varchar(16) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `tempat_lahir` varchar(50) NOT NULL,
+  `tgl_lahir` date NOT NULL,
+  `jenkel` enum('L','P') NOT NULL,
+  `agama` enum('Islam','Katolik','Protestan','Hindu','Buddha','Konghucu') NOT NULL,
+  `alamat` varchar(150) NOT NULL,
+  `status_perkawinan` enum('0','1') NOT NULL,
+  `no_kk` varchar(20) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `email` varchar(20),
+  `ibu_kandung` varchar(20) NOT NULL,
+  `ayah_kandung` varchar(20) NOT NULL,
+  `bpjs_tk` varchar(20),
+  `bpjs_ks` varchar(20),
+  `npwp` varchar(20),
+  `hak_cuti_tahunan` decimal DEFAULT 0,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_pendidikan` FOREIGN KEY (`pendidikan_id`) REFERENCES `pendidikan`(`id`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_jurusan` FOREIGN KEY (`jurusan_id`) REFERENCES `jurusan`(`id`) ON DELETE RESTRICT
+);
+
+CREATE TABLE `pendidikan` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama_pendidikan` varchar(25) NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int
+);
+
+CREATE TABLE `jurusan` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama_jurusan` varchar(100) NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int
+);
+
+CREATE TABLE `dept` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama_dept` varchar(25) NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int
+);
+
+CREATE TABLE `jabatan` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama_jabatan` varchar(25) NOT NULL,
+  `jobdesc` varchar(150) NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int
+);
+
+CREATE TABLE `cuti` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama_cuti` varchar(25) NOT NULL,
+  `keterangan` varchar(150) NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int
+);
+
+CREATE TABLE `group` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `karyawan_id` int NOT NULL,
+  `dept_id` int NOT NULL,
+  `jabatan_id` int NOT NULL,
+  `atasan_1` int DEFAULT NULL,
+  `atasan_2` int DEFAULT NULL,
+  `atasan_3` int DEFAULT NULL,
+  `atasan_4` int DEFAULT NULL,
+  `atasan_5` int DEFAULT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_karyawan_cuti` FOREIGN KEY (`karyawan_id`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_dept` FOREIGN KEY (`dept_id`) REFERENCES `dept`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_jabatan` FOREIGN KEY (`jabatan_id`) REFERENCES `jabatan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_atasan1` FOREIGN KEY (`atasan_1`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_atasan2` FOREIGN KEY (`atasan_2`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_atasan3` FOREIGN KEY (`atasan_3`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_atasan4` FOREIGN KEY (`atasan_4`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_atasan5` FOREIGN KEY (`atasan_5`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- Old
+CREATE TABLE `transcuti` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `cuti_id` int NOT NULL,
+  `karyawan_id` int DEFAULT NULL,
+  `bukti_cuti` varchar(50) DEFAULT NULL,
+  `mulai_cuti` date,
+  `selesai_cuti` date,
+  `cuti_diambil` int DEFAULT NULL,
+  `cuti_diambil_sementara` int DEFAULT NULL,
+  `sisa_cuti` int DEFAULT NULL,
+  `sisa_cuti_sementara` int DEFAULT NULL,
+  `telp` varchar(15),
+  `keterangan` varchar(100) DEFAULT NULL,
+  `approval_1` int DEFAULT NULL,
+  `approval_2` int DEFAULT NULL,
+  `approval_3` int DEFAULT NULL,
+  `approval_4` int DEFAULT NULL,
+  `approval_5` int DEFAULT NULL,
+  `status` int NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_karyawan_cuti` FOREIGN KEY (`karyawan_id`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_cuti` FOREIGN KEY (`cuti_id`) REFERENCES `cuti`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
+-- New
+CREATE TABLE `transcuti` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `cuti_id` int NOT NULL,
+  `karyawan_id` int DEFAULT NULL,
+  `bukti_cuti` varchar(255) DEFAULT NULL,
+  `mulai_cuti` date,
+  `selesai_cuti` date,
+  `cuti_in` decimal(2,1) DEFAULT NULL,
+  `cuti_out` decimal(2,1) DEFAULT NULL,
+  `telp` varchar(15),
+  `keterangan` varchar(100) DEFAULT NULL,
+  `approval_1` int DEFAULT NULL,
+  `approval_2` int DEFAULT NULL,
+  `approval_3` int DEFAULT NULL,
+  `approval_4` int DEFAULT NULL,
+  `approval_5` int DEFAULT NULL,
+  `status` int NOT NULL,
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_karyawan_transcuti` FOREIGN KEY (`karyawan_id`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_cuti` FOREIGN KEY (`cuti_id`) REFERENCES `cuti`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
+CREATE TABLE `user` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `karyawan_id` int NOT NULL,
+  `username` varchar(50),
+  `password` varchar(255),
+  `created_at` datetime,
+  `updated_at` datetime,
+  `created_by` int,
+  `updated_by` int,
+
+  CONSTRAINT `fk_karyawan_user` FOREIGN KEY (`karyawan_id`) REFERENCES `karyawan`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
